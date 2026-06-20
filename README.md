@@ -1,7 +1,7 @@
 # アイドルマスター ポータル 非公式 RSS
 
 アイドルマスター公式ポータルのニュースを RSS 2.0 フィードとして配信するシステムです。
-GitHub Actions が 15 分ごとに自動更新し、GitHub Pages で公開します。
+GitHub Actions が 15 分間隔を目安に自動更新し、GitHub Pages で公開します。
 
 ## 免責事項
 
@@ -72,7 +72,7 @@ git push -u origin main
 
 `Deploy from a branch` → Branch: `gh-pages` / `/ (root)` → Save。
 
-以降は 15 分ごとに自動更新されます。フィードの URL は次の形式になります。
+以降は 15 分間隔を目安に自動更新されます。ただし GitHub Actions のスケジュール実行は高負荷時に遅延する場合があります。フィードの URL は次の形式になります。
 
 ```text
 https://<your-username>.github.io/<your-repo>/rss.xml
