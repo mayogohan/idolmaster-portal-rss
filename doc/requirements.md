@@ -104,35 +104,40 @@ GitHub Actions (cron: */15 * * * *)
 
 ## 技術スタック
 
-| 要素             | 選定                 | 理由                        |
-| ---------------- | -------------------- | --------------------------- |
-| 言語             | TypeScript (Node.js) | 型安全・エコシステム        |
-| HTTPクライアント | `node-fetch`         | 軽量                        |
-| RSS生成          | `feed` npm package   | RSS 2.0 / Atom 双方対応     |
-| CI/CD            | GitHub Actions       | 無料・cron スケジュール対応 |
-| ホスティング     | GitHub Pages         | 無料・安定                  |
+| 要素             | 選定                          | 理由                        |
+| ---------------- | ----------------------------- | --------------------------- |
+| 言語             | TypeScript (Node.js)          | 型安全・エコシステム        |
+| HTTPクライアント | Node.js 22 ネイティブ `fetch` | 追加パッケージ不要          |
+| RSS生成          | `feed` npm package            | RSS 2.0 / Atom 双方対応     |
+| CI/CD            | GitHub Actions                | 無料・cron スケジュール対応 |
+| ホスティング     | GitHub Pages                  | 無料・安定                  |
 
 ---
 
-## ディレクトリ構成（予定）
+## ディレクトリ構成
 
 ```text
 idolmaster-portal-rss/
 ├── doc/
-│   └── requirements.md        # 本ドキュメント
+│   ├── requirements.md         # 本ドキュメント
+│   └── design.md               # 設計書
 ├── src/
+│   ├── types.ts                # 共通型定義
 │   ├── fetchToken.ts           # CMS トークン取得
 │   ├── fetchNews.ts            # ニュース一覧取得
-│   ├── generateFeed.ts         # RSS/Atom 生成
+│   ├── generateFeed.ts         # RSS 生成
 │   └── index.ts                # エントリーポイント
-├── public/
-│   └── rss.xml                 # 生成済みフィード（GitHub Pages で配信）
 ├── .github/
 │   └── workflows/
 │       └── update-feed.yml     # GitHub Actions ワークフロー
+├── .gitignore
+├── eslint.config.js
 ├── package.json
+├── README.md
 └── tsconfig.json
 ```
+
+> **注:** `public/rss.xml` はビルド成果物のため `.gitignore` 対象。`gh-pages` ブランチにのみ配信される。
 
 ---
 
