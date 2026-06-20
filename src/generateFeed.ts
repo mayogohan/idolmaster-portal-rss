@@ -12,7 +12,7 @@ export function generateFeed(articles: Article[]): string {
     language: "ja",
     copyright: "©窪岡俊之 THE IDOLM@STER™ & ©Bandai Namco Entertainment Inc.",
     feedLinks: {
-      rss: "https://mayoneez.github.io/idolmaster-portal-rss/rss.xml",
+      rss: "https://mayogohan.github.io/idolmaster-portal-rss/rss.xml",
     },
   });
 

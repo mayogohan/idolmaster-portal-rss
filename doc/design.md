@@ -157,7 +157,7 @@ export function generateFeed(articles: Article[]): string;
 | `link`          | `https://idolmaster-official.jp/news`                          |
 | `language`      | `ja`                                                           |
 | `copyright`     | `©窪岡俊之 THE IDOLM@STER™ & ©Bandai Namco Entertainment Inc.` |
-| `feedLinks.rss` | `https://mayoneez.github.io/idolmaster-portal-rss/rss.xml`     |
+| `feedLinks.rss` | `https://mayogohan.github.io/idolmaster-portal-rss/rss.xml`    |
 
 #### Article → FeedItem 変換ルール
 
@@ -320,7 +320,7 @@ main().catch((err) => {
 
 GitHub Pages を有効化後、以下の URL でフィードにアクセスできる。
 
-<https://mayoneez.github.io/idolmaster-portal-rss/rss.xml>
+<https://mayogohan.github.io/idolmaster-portal-rss/rss.xml>
 
 ---
 

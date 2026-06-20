@@ -12,7 +12,7 @@ GitHub Actions が 15 分ごとに自動更新し、GitHub Pages で公開しま
 ## フィード URL
 
 ```text
-https://mayoneez.github.io/idolmaster-portal-rss/rss.xml
+https://mayogohan.github.io/idolmaster-portal-rss/rss.xml
 ```
 
 ## 仕組み
@@ -46,7 +46,7 @@ npm run format     # Prettier
 このリポジトリを Fork（または Clone して新規 Public リポジトリに push）します。
 
 ```bash
-git clone https://github.com/mayoneez/idolmaster-portal-rss.git
+git clone https://github.com/mayogohan/idolmaster-portal-rss.git
 cd idolmaster-portal-rss
 # 自分のリポジトリに向け直す
 git remote set-url origin https://github.com/<your-username>/<your-repo>.git
