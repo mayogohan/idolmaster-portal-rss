@@ -266,7 +266,7 @@ main().catch((err) => {
 
   ステップ:
   1. actions/checkout@v4         … ソースチェックアウト
-  2. actions/setup-node@v4       … Node.js 22 セットアップ（npm cache 有効）
+  2. actions/setup-node@v4       … Node.js 22.x セットアップ（npm cache 有効）
   3. npm ci                       … 依存関係インストール
   4. npm run generate             … src/index.ts を実行して public/rss.xml を生成
   5. peaceiris/actions-gh-pages@v4 … public/ を gh-pages ブランチへデプロイ
@@ -290,8 +290,10 @@ main().catch((err) => {
 ```json
 {
   "scripts": {
-    "generate": "ts-node src/index.ts",
-    "build": "tsc --noEmit"
+    "generate": "tsx src/index.ts",
+    "build": "tsc --noEmit",
+    "lint": "eslint src",
+    "format": "prettier --write src"
   }
 }
 ```
@@ -300,12 +302,15 @@ main().catch((err) => {
 
 ## 9. 依存パッケージ
 
-| パッケージ    | バージョン | 用途                        |
-| ------------- | ---------- | --------------------------- |
-| `feed`        | `^5.x`     | RSS 2.0 / Atom フィード生成 |
-| `typescript`  | `^6.x`     | TypeScript コンパイラ       |
-| `ts-node`     | `^10.x`    | TypeScript の直接実行       |
-| `@types/node` | `^22.x`    | Node.js 型定義              |
+| パッケージ          | バージョン | 用途                          |
+| ------------------- | ---------- | ----------------------------- |
+| `feed`              | `^5.x`     | RSS 2.0 / Atom フィード生成   |
+| `typescript`        | `^5.x`     | TypeScript コンパイラ         |
+| `tsx`               | `^4.x`     | TypeScript の直接実行         |
+| `@types/node`       | `^22.x`    | Node.js 型定義                |
+| `eslint`            | `^9.x`     | リント                        |
+| `typescript-eslint` | `^8.x`     | TypeScript 向け ESLint ルール |
+| `prettier`          | `^3.x`     | コードフォーマット            |
 
 > **注:** HTTP リクエストは Node.js 22 のネイティブ `fetch` を使用するため `node-fetch` は不要。
 
