@@ -3,6 +3,15 @@ import type { Article } from "./types";
 
 const THUMBNAIL_BASE = "https://cmsapi-frontend.idolmaster-official.jp";
 
+function resolveFeedUrl(): string {
+  const repo = process.env.GITHUB_REPOSITORY; // "owner/repo" (set by GitHub Actions)
+  if (repo) {
+    const [owner, repoName] = repo.split("/");
+    return `https://${owner}.github.io/${repoName}/rss.xml`;
+  }
+  return "https://mayogohan.github.io/idolmaster-portal-rss/rss.xml";
+}
+
 export function generateFeed(articles: Article[]): string {
   const feed = new Feed({
     title: "アイドルマスター ポータル ニュース",
@@ -12,7 +21,7 @@ export function generateFeed(articles: Article[]): string {
     language: "ja",
     copyright: "©窪岡俊之 THE IDOLM@STER™ & ©Bandai Namco Entertainment Inc.",
     feedLinks: {
-      rss: "https://mayogohan.github.io/idolmaster-portal-rss/rss.xml",
+      rss: resolveFeedUrl(),
     },
   });
 
