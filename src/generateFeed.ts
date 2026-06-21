@@ -1,7 +1,8 @@
 import { Feed } from "feed";
 import type { Article } from "./types";
 
-const THUMBNAIL_BASE = "https://cmsapi-frontend.idolmaster-official.jp";
+const IMAGE_ENDPOINT =
+  "https://cmsapi-frontend.idolmaster-official.jp/sitern/api/idolmaster/Image/get";
 
 function resolveFeedUrl(): string {
   const repo = process.env.GITHUB_REPOSITORY; // "owner/repo" (set by GitHub Actions)
@@ -26,8 +27,9 @@ export function generateFeed(articles: Article[]): string {
   });
 
   for (const article of articles) {
-    const imageUrl = article.thumbnail
-      ? THUMBNAIL_BASE + article.thumbnail
+    const thumbnailPath = article.thumbnail?.split("?")[0];
+    const imageUrl = thumbnailPath
+      ? `${IMAGE_ENDPOINT}?path=${thumbnailPath}`
       : undefined;
 
     feed.addItem({

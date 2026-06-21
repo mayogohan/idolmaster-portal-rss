@@ -172,10 +172,12 @@ export function generateFeed(articles: Article[]): string;
 
 #### サムネイルURL解決
 
+画像は静的ファイルではなく API エンドポイント経由で配信される。
+
 ```typescript
-const THUMBNAIL_BASE = "https://cmsapi-frontend.idolmaster-official.jp";
-// thumbnail が "/" 始まりの相対パスの場合
-const imageUrl = thumbnail ? THUMBNAIL_BASE + thumbnail : undefined;
+const IMAGE_ENDPOINT =
+  "https://cmsapi-frontend.idolmaster-official.jp/sitern/api/idolmaster/Image/get";
+const imageUrl = thumbnail ? `${IMAGE_ENDPOINT}?path=${thumbnail}` : undefined;
 ```
 
 ---
