@@ -4,6 +4,21 @@ import type { Article } from "./types";
 const IMAGE_ENDPOINT =
   "https://cmsapi-frontend.idolmaster-official.jp/sitern/api/idolmaster/Image/get";
 
+const MIME_TYPES: Record<string, string> = {
+  jpg: "image/jpeg",
+  jpeg: "image/jpeg",
+  png: "image/png",
+  gif: "image/gif",
+  webp: "image/webp",
+  avif: "image/avif",
+  svg: "image/svg+xml",
+};
+
+function resolveMimeType(path: string | undefined): string {
+  const ext = path?.split(".").pop()?.toLowerCase() ?? "";
+  return MIME_TYPES[ext] ?? "image/jpeg";
+}
+
 function resolveFeedUrl(): string {
   const repo = process.env.GITHUB_REPOSITORY; // "owner/repo" (set by GitHub Actions)
   if (repo) {
@@ -38,7 +53,9 @@ export function generateFeed(articles: Article[]): string {
       id: article.url,
       date: new Date(article.startdate * 1000),
       description: `<img src="${imageUrl ?? ""}" /><p>${article.title}</p>`,
-      image: imageUrl,
+      image: imageUrl
+        ? { url: imageUrl, type: resolveMimeType(thumbnailPath), length: 0 }
+        : undefined,
     });
   }
 
